@@ -1,9 +1,10 @@
 let turn = [true, false]
-let win = true;
-let xo = [["x","o"],["x","o"],["x","o"],
-          ["x","o"],["x","o"],["x","o"],
-          ["x","o"],["x","o"],["x","o"]]
+let count = 0
+let xo = [[null],[null],[null],
+          [null],[null],[null],
+          [null],[null],[null]];
 
+let win = false;
 function preload(){
     x = loadImage("img/X.png")
     o = loadImage("img/O.png")
@@ -124,30 +125,37 @@ function mouseClicked(){
         turn[1] = false;
         xo[8] = "x"
     }
-    
-    //vertical o wins
-    if (xo[0]=="o"&&xo[1]=="o"&&xo[2]=="o"){winO(); strokeWeight(12.0); line(100, 0, 100, 600);}
-    else if(xo[3]=="o"&&xo[4]=="o"&&xo[5]=="o"){winO(); strokeWeight(12.0); line(300, 0, 300, 600);}
-    else if(xo[6]=="o"&&xo[7]=="o"&&xo[8]=="o"){winO(); strokeWeight(12.0); line(500, 0, 500, 600);}
-    //horizontal o wins
-    else if(xo[0]=="o"&&xo[3]=="o"&&xo[6]=="o"){winO(); strokeWeight(12.0); line(0, 100, 600, 100);}
-    else if(xo[1]=="o"&&xo[4]=="o"&&xo[7]=="o"){winO(); strokeWeight(12.0); line(0, 300, 600, 300);}
-    else if(xo[2]=="o"&&xo[5]=="o"&&xo[8]=="o"){winO(); strokeWeight(12.0); line(0, 500, 600, 500);}
-    //diagonal o wins
-    else if(xo[0]=="o"&&xo[4]=="o"&&xo[8]=="o"){winO(); strokeWeight(12.0); line(0, 0, 600, 600);}
-    else if(xo[2]=="o"&&xo[4]=="o"&&xo[6]=="o"){winO(); strokeWeight(12.0); line(600, 0, 0, 600);}
+    for(let i = 0; i<xo.length; i++){
+        if(xo[i]!=null && win==false){
+            //vertical o wins
+            if (xo[0]=="o"&&xo[1]=="o"&&xo[2]=="o"){winO(); strokeWeight(12.0); line(100, 0, 100, 600);win=true}
+            else if(xo[3]=="o"&&xo[4]=="o"&&xo[5]=="o"){winO(); strokeWeight(12.0); line(300, 0, 300, 600);win=true}
+            else if(xo[6]=="o"&&xo[7]=="o"&&xo[8]=="o"){winO(); strokeWeight(12.0); line(500, 0, 500, 600);win=true}
+            //horizontal o wins
+            else if(xo[0]=="o"&&xo[3]=="o"&&xo[6]=="o"){winO(); strokeWeight(12.0); line(0, 100, 600, 100);win=true}
+            else if(xo[1]=="o"&&xo[4]=="o"&&xo[7]=="o"){winO(); strokeWeight(12.0); line(0, 300, 600, 300);win=true}
+            else if(xo[2]=="o"&&xo[5]=="o"&&xo[8]=="o"){winO(); strokeWeight(12.0); line(0, 500, 600, 500);win=true}
+            //diagonal o wins
+            else if(xo[0]=="o"&&xo[4]=="o"&&xo[8]=="o"){winO(); strokeWeight(12.0); line(0, 0, 600, 600);win=true}
+            else if(xo[2]=="o"&&xo[4]=="o"&&xo[6]=="o"){winO(); strokeWeight(12.0); line(600, 0, 0, 600);win=true}
 
-    //vertical x wins
-    else if(xo[0]=="x"&&xo[1]=="x"&&xo[2]=="x"){winX(); strokeWeight(12.0); line(100, 0, 100, 600);}
-    else if(xo[3]=="x"&&xo[4]=="x"&&xo[5]=="x"){winX(); strokeWeight(12.0); line(300, 0, 300, 600);}
-    else if(xo[6]=="x"&&xo[7]=="x"&&xo[8]=="x"){winX(); strokeWeight(12.0); line(500, 0, 500, 600);}
-    //horizontal x wins
-    else if(xo[0]=="x"&&xo[3]=="x"&&xo[6]=="x"){winX(); strokeWeight(12.0); line(0, 100, 600, 100);}
-    else if(xo[1]=="x"&&xo[4]=="x"&&xo[7]=="x"){winX(); strokeWeight(12.0); line(0, 300, 600, 300);}
-    else if(xo[2]=="x"&&xo[5]=="x"&&xo[8]=="x"){winX(); strokeWeight(12.0); line(0, 500, 600, 500);}
-    //diagonal x wins
-    else if(xo[0]=="x"&&xo[4]=="x"&&xo[8]=="x"){winX(); strokeWeight(12.0); line(0, 0, 600, 600);}
-    else if(xo[2]=="x"&&xo[4]=="x"&&xo[6]=="x"){winX(); strokeWeight(12.0); line(600, 0, 0, 600);}
+            //vertical x wins
+            else if(xo[0]=="x"&&xo[1]=="x"&&xo[2]=="x"){winX(); strokeWeight(12.0); line(100, 0, 100, 600);win=true}
+            else if(xo[3]=="x"&&xo[4]=="x"&&xo[5]=="x"){winX(); strokeWeight(12.0); line(300, 0, 300, 600);win=true}
+            else if(xo[6]=="x"&&xo[7]=="x"&&xo[8]=="x"){winX(); strokeWeight(12.0); line(500, 0, 500, 600);win=true}
+            //horizontal x wins
+            else if(xo[0]=="x"&&xo[3]=="x"&&xo[6]=="x"){winX(); strokeWeight(12.0); line(0, 100, 600, 100);win=true}
+            else if(xo[1]=="x"&&xo[4]=="x"&&xo[7]=="x"){winX(); strokeWeight(12.0); line(0, 300, 600, 300);win=true}
+            else if(xo[2]=="x"&&xo[5]=="x"&&xo[8]=="x"){winX(); strokeWeight(12.0); line(0, 500, 600, 500);win=true}
+            //diagonal x wins
+            else if(xo[0]=="x"&&xo[4]=="x"&&xo[8]=="x"){winX(); strokeWeight(12.0); line(0, 0, 600, 600);win=true}
+            else if(xo[2]=="x"&&xo[4]=="x"&&xo[6]=="x"){winX(); strokeWeight(12.0); line(600, 0, 0, 600);win=true}
+        } 
+    }
+    count++
+    if (count == 9 && win == false){
+        tie();
+    }
 }
 
 function winO(){
@@ -160,4 +168,10 @@ function winX(){
     fill(155)
     textFont("impact", 50)
     text("X's Win!",230,300)
+}
+
+function tie(){
+    fill(155)
+    textFont("impact", 50)
+    text("It's a Draw!",230,300)
 }
